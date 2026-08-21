@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SAHNA — To'y Media & Vizual Ekotizimi</title>
   
-  <!-- Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap" rel="stylesheet">
@@ -42,16 +42,15 @@
   </script>
 
   <style>
-    /* Native select element color-scheme fix */
     :root { color-scheme: dark; }
     html:not(.dark) { color-scheme: light; }
     select option {
-      background-color: #171B22;
-      color: #FFFFFF;
+      background-color: #171B22 !important;
+      color: #FFFFFF !important;
     }
     html:not(.dark) select option {
-      background-color: #FFFFFF;
-      color: #0F172A;
+      background-color: #FFFFFF !important;
+      color: #0F172A !important;
     }
     .gold-gradient-text {
       background: linear-gradient(135deg, #DFBD78 0%, #C6A15B 50%, #9E7730 100%);
@@ -61,6 +60,12 @@
     .gold-gradient-bg {
       background: linear-gradient(135deg, #DFBD78 0%, #C6A15B 100%);
     }
+    .card-zoom-img {
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .group:hover .card-zoom-img {
+      transform: scale(1.08);
+    }
   </style>
 </head>
 
@@ -68,16 +73,16 @@
 
   <!-- ================= NAVBAR ================= -->
   <header class="sticky top-0 z-50 bg-white/90 dark:bg-brand-surfaceDark/90 backdrop-blur-md border-b border-brand-borderLight dark:border-brand-borderDark transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       
       <!-- Logo -->
       <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 rounded-2xl gold-gradient-bg flex items-center justify-center text-brand-dark font-serif font-black text-2xl shadow-lg shadow-brand-gold/20 group-hover:scale-105 transition">
+        <div class="w-11 h-11 rounded-2xl gold-gradient-bg flex items-center justify-center text-brand-dark font-serif font-black text-2xl shadow-lg shadow-brand-gold/20 group-hover:scale-105 transition transform">
           S
         </div>
         <div>
           <span class="text-2xl font-serif font-extrabold tracking-wider text-slate-900 dark:text-white block leading-none">SAHNA</span>
-          <span class="text-[10px] block text-brand-gold font-bold tracking-[0.2em] uppercase mt-1">Wedding Hub</span>
+          <span class="text-[10px] block text-brand-gold font-bold tracking-[0.22em] uppercase mt-1">Wedding Ecosystem</span>
         </div>
       </a>
 
@@ -92,30 +97,28 @@
 
       <!-- Actions -->
       <div class="flex items-center gap-3">
-        <!-- Theme Mode Toggle -->
-        <button id="themeToggle" aria-label="Theme toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-brand-cardDark border border-brand-borderLight dark:border-brand-borderDark text-slate-700 dark:text-brand-gold hover:scale-105 transition">
+        <button id="themeToggle" aria-label="Theme mode" class="p-2.5 rounded-xl bg-slate-100 dark:bg-brand-cardDark border border-brand-borderLight dark:border-brand-borderDark text-slate-700 dark:text-brand-gold hover:scale-105 transition">
           <span id="themeIcon">☀️</span>
         </button>
 
-        <button onclick="openBookingModal('Umumiy Buyurtma', 'Kelishilgan narx')" class="hidden sm:inline-flex gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-sm px-5 py-2.5 rounded-xl transition shadow-md shadow-brand-gold/10">
+        <button onclick="openBookingModal('Umumiy To\'y Broni', '5 500 000 UZS')" class="hidden sm:inline-flex gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-sm px-5 py-2.5 rounded-xl transition shadow-md shadow-brand-gold/10 hover:shadow-brand-gold/30 hover:scale-105 transform">
           To'yni Band Qilish
         </button>
 
-        <!-- Mobile Menu Toggle Button -->
         <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-brand-cardDark border border-brand-borderLight dark:border-brand-borderDark text-slate-700 dark:text-white">
           ☰
         </button>
       </div>
     </div>
 
-    <!-- Mobile Nav Dropdown -->
+    <!-- Mobile Nav -->
     <div id="mobileMenu" class="hidden lg:hidden border-t border-brand-borderLight dark:border-brand-borderDark bg-white dark:bg-brand-surfaceDark px-4 py-4 space-y-2">
       <a href="#hero" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-brand-gold/10">Bosh Sahifa</a>
       <a href="#videographers" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-brand-gold/10">Videograflar</a>
       <a href="#calculator" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-brand-gold/10">Smeta Hisoblagich</a>
       <a href="#marketplace" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-brand-gold/10">Vitrina & PSD</a>
       <a href="#battle" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-brand-gold/10">Hafta To'yi</a>
-      <button onclick="openBookingModal('Umumiy Buyurtma', 'Kelishilgan narx')" class="w-full text-center gold-gradient-bg text-brand-dark font-bold text-sm py-2.5 rounded-xl mt-2">
+      <button onclick="openBookingModal('Umumiy To\'y Broni', '5 500 000 UZS')" class="w-full text-center gold-gradient-bg text-brand-dark font-bold text-sm py-2.5 rounded-xl mt-2">
         To'yni Band Qilish
       </button>
     </div>
@@ -126,11 +129,11 @@
     <div class="max-w-5xl mx-auto text-center space-y-6">
       
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-xs font-bold uppercase tracking-wider">
-        <span>✨</span> O'zbekistonning 1-raqamli premium to'y media tarmog'i
+        <span>✨</span> O'zbekistonning 14 ta hududidagi premium to'y platformasi
       </div>
 
       <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-slate-900 dark:text-white leading-[1.15]">
-        Eng Unutilmas Lahzalar va <br class="hidden sm:inline" />
+        Eng Go'zal To'y Lahzalari va <br class="hidden sm:inline" />
         <span class="gold-gradient-text italic">Professional Videograflar</span>
       </h1>
 
@@ -138,35 +141,42 @@
         To‘yingiz uchun professional video ustalari, 300 DPI vitrina ramkalar, aniq smeta hisobi va kafolatlangan xavfsiz zaklad tizimi.
       </p>
 
-      <!-- Advanced Filter Search -->
+      <!-- Advanced Filter Search (12 viloyat + Toshkent sh. + Qoraqalpog'iston) -->
       <div class="max-w-4xl mx-auto bg-white dark:bg-brand-surfaceDark p-3 sm:p-4 rounded-3xl shadow-2xl border border-brand-borderLight dark:border-brand-borderDark mt-8">
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           
-          <!-- City -->
-          <div class="flex items-center gap-2 px-3 py-2.5 rounded-2xl bg-slate-100 dark:bg-brand-cardDark border border-brand-borderLight dark:border-brand-borderDark">
+          <!-- City Selector -->
+          <div class="flex items-center gap-2 px-3.5 py-3 rounded-2xl bg-slate-100 dark:bg-brand-cardDark border border-brand-borderLight dark:border-brand-borderDark">
             <span class="text-base">📍</span>
             <select id="heroCity" class="w-full bg-transparent text-slate-900 dark:text-white font-semibold text-sm focus:outline-none cursor-pointer">
-              <option value="all">Barcha Hududlar</option>
-              <option value="samarkand" selected>Samarqand</option>
-              <option value="tashkent">Toshkent shahri</option>
-              <option value="bukhara">Buxoro</option>
-              <option value="fergana">Farg'ona</option>
-              <option value="andijan">Andijon</option>
-              <option value="namangan">Namangan</option>
-              <option value="khorezm">Xorazm</option>
+              <option value="all">Barcha Hududlar (14 ta)</option>
+              <option value="samarqand" selected>📍 Samarqand viloyati</option>
+              <option value="toshkent_sh">📍 Toshkent shahri</option>
+              <option value="toshkent_vil">📍 Toshkent viloyati</option>
+              <option value="buxoro">📍 Buxoro viloyati</option>
+              <option value="fargona">📍 Farg'ona viloyati</option>
+              <option value="andijon">📍 Andijon viloyati</option>
+              <option value="namangan">📍 Namangan viloyati</option>
+              <option value="qashqadaryo">📍 Qashqadaryo viloyati</option>
+              <option value="surxondaryo">📍 Surxondaryo viloyati</option>
+              <option value="jizzax">📍 Jizzax viloyati</option>
+              <option value="sirdaryo">📍 Sirdaryo viloyati</option>
+              <option value="navoiy">📍 Navoiy viloyati</option>
+              <option value="xorazm">📍 Xorazm viloyati</option>
+              <option value="qoraqalpogiston">📍 Qoraqalpog'iston Respublikasi</option>
             </select>
           </div>
 
-          <!-- Date -->
-          <div class="flex items-center gap-2 px-3 py-2.5 rounded-2xl bg-slate-100 dark:bg-brand-cardDark border border-brand-borderLight dark:border-brand-borderDark">
+          <!-- Wedding Date -->
+          <div class="flex items-center gap-2 px-3.5 py-3 rounded-2xl bg-slate-100 dark:bg-brand-cardDark border border-brand-borderLight dark:border-brand-borderDark">
             <span class="text-base">📅</span>
-            <input type="date" value="2026-09-20" class="w-full bg-transparent text-slate-900 dark:text-white font-semibold text-sm focus:outline-none cursor-pointer" />
+            <input type="date" id="heroDate" value="2026-09-20" class="w-full bg-transparent text-slate-900 dark:text-white font-semibold text-sm focus:outline-none cursor-pointer" />
           </div>
 
-          <!-- Submit -->
-          <a href="#videographers" class="gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-sm rounded-2xl flex items-center justify-center gap-2 py-3 px-6 shadow-md transition">
-            <span>🔍</span> Videograflarni Saralash
-          </a>
+          <!-- Filter Action -->
+          <button onclick="filterVideographers()" class="gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-sm rounded-2xl flex items-center justify-center gap-2 py-3 px-6 shadow-md transition hover:scale-[1.02] transform">
+            <span>🔍</span> Videochilarni Saralash
+          </button>
         </div>
       </div>
 
@@ -180,23 +190,24 @@
         <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Saralangan Ijodkorlar</span>
         <h2 class="text-3xl font-serif font-extrabold text-slate-900 dark:text-white mt-1">Top Videograflar Katalogi</h2>
       </div>
-      <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md">
-        Har bir studiya SAHNA tekshiruvidan o‘tgan, portfoliolari va narxlari ochiq ko‘rsatilgan.
-      </p>
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-slate-400">Ko'rsatilmoqda:</span>
+        <span id="activeFilterBadge" class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20">Samarqand viloyati</span>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div id="videoCardsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
       
-      <!-- Studio 1 -->
-      <div class="bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark overflow-hidden shadow-sm hover:border-brand-gold/50 transition group flex flex-col">
-        <div class="relative h-56 bg-slate-800 overflow-hidden flex items-center justify-center">
-          <div class="text-slate-400 text-sm font-semibold flex items-center gap-2">
-            <span>🎬 4K Teaser Preview</span>
+      <!-- Studio 1: Registon Cinema -->
+      <div data-region="samarqand" class="studio-card bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark overflow-hidden shadow-sm hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 transform hover:-translate-y-2 group flex flex-col">
+        <div class="relative h-60 bg-gradient-to-tr from-slate-950 to-slate-800 overflow-hidden flex items-center justify-center">
+          <div class="card-zoom-img w-full h-full flex items-center justify-center text-slate-300 font-semibold bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));">
+            <span class="text-sm font-bold tracking-wide flex items-center gap-2">🎬 4K Sony FX3 Teaser Preview</span>
           </div>
-          <span class="absolute top-4 left-4 bg-brand-dark/80 backdrop-blur-md text-brand-gold text-xs font-bold px-3 py-1 rounded-full border border-brand-gold/30">
+          <span class="absolute top-4 left-4 bg-brand-dark/85 backdrop-blur-md text-brand-gold text-xs font-bold px-3 py-1 rounded-full border border-brand-gold/30">
             Top Tanlov
           </span>
-          <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+          <span class="absolute top-4 right-4 bg-black/75 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
             ⭐ 5.0 (48 to'y)
           </span>
         </div>
@@ -204,7 +215,7 @@
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
           <div>
             <h3 class="text-xl font-bold text-slate-900 dark:text-white font-serif">Registon Cinema</h3>
-            <p class="text-xs text-brand-gold font-semibold mt-0.5">Samarqand shahar • Butun viloyat</p>
+            <p class="text-xs text-brand-gold font-semibold mt-0.5">Samarqand viloyati • Shahar va tumanlar</p>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
               2 ta 4K Sony FX3 kamera, DJI dron aerotasmaviy syomka, to‘y kuni montaj (SDE) va LoveStory.
             </p>
@@ -215,20 +226,20 @@
               <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Boshlang'ich Narx</span>
               <span class="text-lg font-black text-brand-gold">5 500 000 UZS</span>
             </div>
-            <button onclick="openBookingModal('Registon Cinema', '5 500 000 UZS')" class="gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-xs px-4 py-2.5 rounded-xl transition shadow">
+            <button onclick="openBookingModal('Registon Cinema', '5 500 000 UZS')" class="gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-xs px-4 py-2.5 rounded-xl transition shadow hover:scale-105 transform">
               Band Qilish
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Studio 2 -->
-      <div class="bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark overflow-hidden shadow-sm hover:border-brand-gold/50 transition group flex flex-col">
-        <div class="relative h-56 bg-slate-800 overflow-hidden flex items-center justify-center">
-          <div class="text-slate-400 text-sm font-semibold flex items-center gap-2">
-            <span>🚁 Cinematic Drone 4K</span>
+      <!-- Studio 2: Afrosiyob Media -->
+      <div data-region="samarqand toshkent_sh" class="studio-card bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark overflow-hidden shadow-sm hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 transform hover:-translate-y-2 group flex flex-col">
+        <div class="relative h-60 bg-gradient-to-tr from-slate-950 to-slate-800 overflow-hidden flex items-center justify-center">
+          <div class="card-zoom-img w-full h-full flex items-center justify-center text-slate-300 font-semibold bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));">
+            <span class="text-sm font-bold tracking-wide flex items-center gap-2">🚁 Cinematic Drone 4K Preview</span>
           </div>
-          <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+          <span class="absolute top-4 right-4 bg-black/75 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
             ⭐ 4.9 (62 to'y)
           </span>
         </div>
@@ -236,7 +247,7 @@
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
           <div>
             <h3 class="text-xl font-bold text-slate-900 dark:text-white font-serif">Afrosiyob Media</h3>
-            <p class="text-xs text-brand-gold font-semibold mt-0.5">Samarqand / Toshkent</p>
+            <p class="text-xs text-brand-gold font-semibold mt-0.5">Samarqand / Toshkent shahri</p>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
               Kinoformatidagi rang berish (Color grading), zamonaviy Reels kliplar va to‘liq arxiv xotirasi.
             </p>
@@ -247,23 +258,23 @@
               <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Boshlang'ich Narx</span>
               <span class="text-lg font-black text-brand-gold">7 000 000 UZS</span>
             </div>
-            <button onclick="openBookingModal('Afrosiyob Media', '7 000 000 UZS')" class="gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-xs px-4 py-2.5 rounded-xl transition shadow">
+            <button onclick="openBookingModal('Afrosiyob Media', '7 000 000 UZS')" class="gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-xs px-4 py-2.5 rounded-xl transition shadow hover:scale-105 transform">
               Band Qilish
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Studio 3 -->
-      <div class="bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark overflow-hidden shadow-sm hover:border-brand-gold/50 transition group flex flex-col">
-        <div class="relative h-56 bg-slate-800 overflow-hidden flex items-center justify-center">
-          <div class="text-slate-400 text-sm font-semibold flex items-center gap-2">
-            <span>👑 VIP Wedding Highlights</span>
+      <!-- Studio 3: SilkRoad Production -->
+      <div data-region="all toshkent_sh samarqand buxoro fargona andijon namangan qashqadaryo surxondaryo jizzax sirdaryo navoiy xorazm qoraqalpogiston toshkent_vil" class="studio-card bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark overflow-hidden shadow-sm hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 transform hover:-translate-y-2 group flex flex-col">
+        <div class="relative h-60 bg-gradient-to-tr from-slate-950 to-slate-800 overflow-hidden flex items-center justify-center">
+          <div class="card-zoom-img w-full h-full flex items-center justify-center text-slate-300 font-semibold bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));">
+            <span class="text-sm font-bold tracking-wide flex items-center gap-2">👑 VIP Grand Wedding Show</span>
           </div>
           <span class="absolute top-4 left-4 bg-purple-500/20 backdrop-blur-md text-purple-400 text-xs font-bold px-3 py-1 rounded-full border border-purple-500/30">
-            Premium
+            Respublika Bo'ylab
           </span>
-          <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+          <span class="absolute top-4 right-4 bg-black/75 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
             ⭐ 4.9 (39 to'y)
           </span>
         </div>
@@ -271,9 +282,9 @@
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
           <div>
             <h3 class="text-xl font-bold text-slate-900 dark:text-white font-serif">SilkRoad Production</h3>
-            <p class="text-xs text-brand-gold font-semibold mt-0.5">O'zbekiston bo'ylab VIP xizmat</p>
+            <p class="text-xs text-brand-gold font-semibold mt-0.5">Barcha 14 ta hududga chiqish xizmati</p>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
-              3 kamera + Katta kran + Dron + Jonli efir translatsiyasi va maxsus intervyular to'plami.
+              3 ta kamera + Katta kran + Dron + Jonli efir translatsiyasi va maxsus intervyular to'plami.
             </p>
           </div>
 
@@ -282,7 +293,7 @@
               <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Boshlang'ich Narx</span>
               <span class="text-lg font-black text-brand-gold">9 500 000 UZS</span>
             </div>
-            <button onclick="openBookingModal('SilkRoad Production', '9 500 000 UZS')" class="gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-xs px-4 py-2.5 rounded-xl transition shadow">
+            <button onclick="openBookingModal('SilkRoad Production', '9 500 000 UZS')" class="gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-xs px-4 py-2.5 rounded-xl transition shadow hover:scale-105 transform">
               Band Qilish
             </button>
           </div>
@@ -363,8 +374,8 @@
             <span class="text-[11px] uppercase font-bold text-slate-400 block tracking-wider">Taxminiy Jami Byudjet</span>
             <span id="totalCost" class="text-3xl sm:text-4xl font-black text-brand-gold">52 200 000 UZS</span>
           </div>
-          <button onclick="alert('Smeta konfiguratsiyasi saqlandi! Tez orada menejerimiz siz bilan bog\'lanadi.')" class="w-full sm:w-auto gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-sm px-8 py-3.5 rounded-2xl shadow-lg transition">
-            Smetani Yuklab Olish
+          <button onclick="downloadSmetaSummary()" class="w-full sm:w-auto gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-sm px-8 py-3.5 rounded-2xl shadow-lg transition hover:scale-105 transform flex items-center justify-center gap-2">
+            <span>📄</span> Smetani Hisobot Qilish
           </button>
         </div>
 
@@ -378,16 +389,19 @@
     <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
       <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Matbaa va Dizayn</span>
       <h2 class="text-3xl font-serif font-extrabold text-slate-900 dark:text-white">Vitrina Portretlar & PSD Maketlar</h2>
-      <p class="text-sm text-slate-500 dark:text-slate-400">300 DPI yuqori aniqlikdagi yog'och ramkali portretlar va tayyor grafik to'plamlar</p>
+      <p class="text-sm text-slate-500 dark:text-slate-400">300 DPI yuqori sifatdagi yog'och ramkali portretlar va tayyor grafik to'plamlar</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
       
       <!-- Product 1 -->
-      <div class="bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark p-6 shadow-sm flex flex-col justify-between">
+      <div class="bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark p-6 shadow-sm hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 transform hover:-translate-y-2 group flex flex-col justify-between">
         <div>
-          <div class="h-48 bg-slate-100 dark:bg-brand-cardDark rounded-2xl mb-5 flex items-center justify-center font-bold text-sm text-slate-400 border border-dashed border-brand-borderLight dark:border-brand-borderDark">
-            🖼️ 60x90 sm Yog'och Ramka
+          <div class="h-52 bg-slate-100 dark:bg-brand-cardDark rounded-2xl mb-5 flex items-center justify-center font-bold text-sm text-slate-400 border border-dashed border-brand-borderLight dark:border-brand-borderDark overflow-hidden relative">
+            <div class="card-zoom-img w-full h-full flex flex-col items-center justify-center bg-slate-800 text-white">
+              <span class="text-2xl mb-1">🖼️</span>
+              <span class="text-xs font-bold">60x90 sm Yog'och Ramka</span>
+            </div>
           </div>
           <span class="text-[10px] font-bold uppercase px-2.5 py-1 rounded bg-brand-gold/10 text-brand-gold">Matbaa Mahsuloti</span>
           <h3 class="font-bold text-lg text-slate-900 dark:text-white mt-2">Katta Devoriy Vitrina Portret</h3>
@@ -398,17 +412,20 @@
 
         <div class="pt-6 mt-4 border-t border-brand-borderLight dark:border-brand-borderDark flex items-center justify-between">
           <span class="font-black text-brand-gold text-base">350 000 UZS</span>
-          <button onclick="alert('Buyurtma qabul qilindi!')" class="bg-slate-900 dark:bg-white/10 hover:bg-brand-gold hover:text-black text-white text-xs font-bold px-4 py-2.5 rounded-xl transition">
+          <button onclick="openProductModal('Katta Devoriy Vitrina Portret (60x90 sm)', '350 000 UZS')" class="bg-slate-900 dark:bg-white/10 hover:bg-brand-gold hover:text-black text-white text-xs font-bold px-4 py-2.5 rounded-xl transition hover:scale-105 transform">
             Buyurtma Berish
           </button>
         </div>
       </div>
 
       <!-- Product 2 -->
-      <div class="bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark p-6 shadow-sm flex flex-col justify-between">
+      <div class="bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark p-6 shadow-sm hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 transform hover:-translate-y-2 group flex flex-col justify-between">
         <div>
-          <div class="h-48 bg-slate-100 dark:bg-brand-cardDark rounded-2xl mb-5 flex items-center justify-center font-bold text-sm text-slate-400 border border-dashed border-brand-borderLight dark:border-brand-borderDark">
-            📖 30x30 sm Charm Muqova
+          <div class="h-52 bg-slate-100 dark:bg-brand-cardDark rounded-2xl mb-5 flex items-center justify-center font-bold text-sm text-slate-400 border border-dashed border-brand-borderLight dark:border-brand-borderDark overflow-hidden relative">
+            <div class="card-zoom-img w-full h-full flex flex-col items-center justify-center bg-slate-800 text-white">
+              <span class="text-2xl mb-1">📖</span>
+              <span class="text-xs font-bold">30x30 sm Charm Muqova</span>
+            </div>
           </div>
           <span class="text-[10px] font-bold uppercase px-2.5 py-1 rounded bg-brand-gold/10 text-brand-gold">Eksklyuziv Albom</span>
           <h3 class="font-bold text-lg text-slate-900 dark:text-white mt-2">Eksklyuziv Charm Fotoalbom</h3>
@@ -419,17 +436,20 @@
 
         <div class="pt-6 mt-4 border-t border-brand-borderLight dark:border-brand-borderDark flex items-center justify-between">
           <span class="font-black text-brand-gold text-base">650 000 UZS</span>
-          <button onclick="alert('Buyurtma qabul qilindi!')" class="bg-slate-900 dark:bg-white/10 hover:bg-brand-gold hover:text-black text-white text-xs font-bold px-4 py-2.5 rounded-xl transition">
+          <button onclick="openProductModal('Eksklyuziv Charm Fotoalbom (30x30 sm)', '650 000 UZS')" class="bg-slate-900 dark:bg-white/10 hover:bg-brand-gold hover:text-black text-white text-xs font-bold px-4 py-2.5 rounded-xl transition hover:scale-105 transform">
             Buyurtma Berish
           </button>
         </div>
       </div>
 
       <!-- Product 3 -->
-      <div class="bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark p-6 shadow-sm flex flex-col justify-between">
+      <div class="bg-white dark:bg-brand-surfaceDark rounded-3xl border border-brand-borderLight dark:border-brand-borderDark p-6 shadow-sm hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 transform hover:-translate-y-2 group flex flex-col justify-between">
         <div>
-          <div class="h-48 bg-slate-100 dark:bg-brand-cardDark rounded-2xl mb-5 flex items-center justify-center font-bold text-sm text-slate-400 border border-dashed border-brand-borderLight dark:border-brand-borderDark">
-            🎨 Photoshop PSD To'plami
+          <div class="h-52 bg-slate-100 dark:bg-brand-cardDark rounded-2xl mb-5 flex items-center justify-center font-bold text-sm text-slate-400 border border-dashed border-brand-borderLight dark:border-brand-borderDark overflow-hidden relative">
+            <div class="card-zoom-img w-full h-full flex flex-col items-center justify-center bg-slate-800 text-white">
+              <span class="text-2xl mb-1">🎨</span>
+              <span class="text-xs font-bold">Photoshop PSD To'plami</span>
+            </div>
           </div>
           <span class="text-[10px] font-bold uppercase px-2.5 py-1 rounded bg-blue-500/10 text-blue-400">Raqamli Fayl</span>
           <h3 class="font-bold text-lg text-slate-900 dark:text-white mt-2">To'y Taklifnoma PSD Shablonlari</h3>
@@ -440,7 +460,7 @@
 
         <div class="pt-6 mt-4 border-t border-brand-borderLight dark:border-brand-borderDark flex items-center justify-between">
           <span class="font-black text-brand-gold text-base">120 000 UZS</span>
-          <button onclick="alert('To\'lovdan so\'ng fayl avtomatik yuklanadi!')" class="gold-gradient-bg hover:opacity-90 text-brand-dark text-xs font-bold px-4 py-2.5 rounded-xl transition shadow">
+          <button onclick="openProductModal('To\'y Taklifnoma PSD Shablonlari To\'plami', '120 000 UZS')" class="gold-gradient-bg hover:opacity-90 text-brand-dark text-xs font-bold px-4 py-2.5 rounded-xl transition shadow hover:scale-105 transform">
             Yuklab Olish
           </button>
         </div>
@@ -460,37 +480,47 @@
     <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8">
       
       <!-- Pair 1 -->
-      <div class="bg-white dark:bg-brand-surfaceDark p-6 rounded-3xl border border-brand-borderLight dark:border-brand-borderDark shadow-md text-left space-y-4">
-        <div class="h-52 bg-slate-800 rounded-2xl flex items-center justify-center text-white font-bold relative overflow-hidden">
-          <span>🎬 Anvar & Madina To'y Klipi</span>
-          <span class="absolute bottom-3 left-3 bg-black/70 px-2.5 py-1 rounded text-xs">Samarqand "Yulduz" saroyi</span>
+      <div class="bg-white dark:bg-brand-surfaceDark p-6 rounded-3xl border border-brand-borderLight dark:border-brand-borderDark shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group text-left space-y-4">
+        <div class="h-56 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-bold relative overflow-hidden">
+          <div class="card-zoom-img w-full h-full flex flex-col items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));">
+            <span class="text-3xl mb-1">🎬</span>
+            <span class="text-sm">Anvar & Madina To'y Klipi</span>
+          </div>
+          <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-medium border border-white/10">
+            🏛️ Samarqand "Yulduz" saroyi
+          </span>
         </div>
         <div>
           <h3 class="font-bold text-lg text-slate-900 dark:text-white font-serif">Anvar & Madina</h3>
-          <p class="text-xs text-brand-gold font-semibold">Video: @registon_cinema</p>
+          <p class="text-xs text-brand-gold font-semibold mt-0.5">Tasvirchi: @registon_cinema</p>
         </div>
         <div class="pt-3 border-t border-brand-borderLight dark:border-brand-borderDark flex items-center justify-between">
           <span id="vote1" class="font-black text-brand-gold text-lg">1 240 Ovoz</span>
-          <button onclick="castVote(1)" class="gold-gradient-bg text-brand-dark font-bold text-xs px-5 py-2.5 rounded-xl hover:opacity-90 transition shadow">
-            ❤️ Ovoz Berish
+          <button onclick="castVote(1)" class="gold-gradient-bg text-brand-dark font-bold text-xs px-5 py-2.5 rounded-xl hover:opacity-90 transition shadow hover:scale-105 transform flex items-center gap-1.5">
+            <span>❤️</span> Ovoz Berish
           </button>
         </div>
       </div>
 
       <!-- Pair 2 -->
-      <div class="bg-white dark:bg-brand-surfaceDark p-6 rounded-3xl border border-brand-borderLight dark:border-brand-borderDark shadow-md text-left space-y-4">
-        <div class="h-52 bg-slate-800 rounded-2xl flex items-center justify-center text-white font-bold relative overflow-hidden">
-          <span>🎬 Jasur & Kamola To'y Klipi</span>
-          <span class="absolute bottom-3 left-3 bg-black/70 px-2.5 py-1 rounded text-xs">Toshkent "Versal" saroyi</span>
+      <div class="bg-white dark:bg-brand-surfaceDark p-6 rounded-3xl border border-brand-borderLight dark:border-brand-borderDark shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group text-left space-y-4">
+        <div class="h-56 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-bold relative overflow-hidden">
+          <div class="card-zoom-img w-full h-full flex flex-col items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));">
+            <span class="text-3xl mb-1">🎬</span>
+            <span class="text-sm">Jasur & Kamola To'y Klipi</span>
+          </div>
+          <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-medium border border-white/10">
+            🏛️ Toshkent "Versal" saroyi
+          </span>
         </div>
         <div>
           <h3 class="font-bold text-lg text-slate-900 dark:text-white font-serif">Jasur & Kamola</h3>
-          <p class="text-xs text-brand-gold font-semibold">Video: @silkroad_production</p>
+          <p class="text-xs text-brand-gold font-semibold mt-0.5">Tasvirchi: @silkroad_production</p>
         </div>
         <div class="pt-3 border-t border-brand-borderLight dark:border-brand-borderDark flex items-center justify-between">
           <span id="vote2" class="font-black text-brand-gold text-lg">980 Ovoz</span>
-          <button onclick="castVote(2)" class="gold-gradient-bg text-brand-dark font-bold text-xs px-5 py-2.5 rounded-xl hover:opacity-90 transition shadow">
-            ❤️ Ovoz Berish
+          <button onclick="castVote(2)" class="gold-gradient-bg text-brand-dark font-bold text-xs px-5 py-2.5 rounded-xl hover:opacity-90 transition shadow hover:scale-105 transform flex items-center gap-1.5">
+            <span>❤️</span> Ovoz Berish
           </button>
         </div>
       </div>
@@ -498,14 +528,72 @@
     </div>
   </section>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="mt-auto border-t border-brand-borderLight dark:border-brand-borderDark bg-white dark:bg-brand-surfaceDark py-10 px-4 text-center text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="font-serif font-bold text-brand-gold text-base">SAHNA</span>
-        <span>— To'y Media & Vizual Ekotizimi</span>
+  <!-- ================= KENGAYTIRILGAN FOOTER ================= -->
+  <footer class="mt-auto border-t border-brand-borderLight dark:border-brand-borderDark bg-white dark:bg-brand-surfaceDark text-slate-600 dark:text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        
+        <!-- Kolonka 1: Kompaniya -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl gold-gradient-bg flex items-center justify-center text-brand-dark font-serif font-black text-lg shadow-md">
+              S
+            </div>
+            <div>
+              <span class="text-lg font-serif font-bold text-slate-900 dark:text-white leading-none block">SAHNA</span>
+              <span class="text-[9px] text-brand-gold font-bold tracking-widest uppercase">Wedding Hub</span>
+            </div>
+          </div>
+          <p class="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+            O'zbekistonning 14 ta hududidagi to'y videograflari, matbaa portretlari va to'y xarajatlari smetasini birlashtiruvchi ekotizim.
+          </p>
+          <div class="flex items-center gap-3 pt-1">
+            <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-brand-cardDark flex items-center justify-center hover:text-brand-gold transition border border-brand-borderLight dark:border-brand-borderDark">📷</a>
+            <a href="https://t.me" target="_blank" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-brand-cardDark flex items-center justify-center hover:text-brand-gold transition border border-brand-borderLight dark:border-brand-borderDark">✈️</a>
+            <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-brand-cardDark flex items-center justify-center hover:text-brand-gold transition border border-brand-borderLight dark:border-brand-borderDark">▶️</a>
+          </div>
+        </div>
+
+        <!-- Kolonka 2: Sahifalar -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white uppercase tracking-wider">Tezkor Havolalar</h4>
+          <ul class="space-y-2">
+            <li><a href="#hero" class="hover:text-brand-gold transition">Bosh Sahifa</a></li>
+            <li><a href="#videographers" class="hover:text-brand-gold transition">Top Videograflar Katalogi</a></li>
+            <li><a href="#calculator" class="hover:text-brand-gold transition">Smeta Hisoblagich</a></li>
+            <li><a href="#marketplace" class="hover:text-brand-gold transition">Vitrina Ramkalar & PSD</a></li>
+            <li><a href="#battle" class="hover:text-brand-gold transition">Haftaning Eng Chiroyli To'yi</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolonka 3: Hududlar -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white uppercase tracking-wider">Qamrov Hududlari</h4>
+          <p class="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+            Toshkent sh., Samarqand, Buxoro, Farg'ona, Andijon, Namangan, Qashqadaryo, Surxondaryo, Jizzax, Sirdaryo, Navoiy, Xorazm va Qoraqalpog'iston Respublikasi bo'ylab buyurtmalar qabul qilinadi.
+          </p>
+          <div class="p-2.5 rounded-xl bg-brand-gold/10 border border-brand-gold/20 text-brand-gold font-semibold text-[11px]">
+            🛡️ 100% Xavfsiz Zaklad Kafolati
+          </div>
+        </div>
+
+        <!-- Kolonka 4: Aloqa & Yordam -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white uppercase tracking-wider">Bog'lanish</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Takliflar va hamkorlik uchun ma'muriyat bilan bog'laning:</p>
+          <div class="space-y-1.5 font-medium">
+            <p class="flex items-center gap-2 text-slate-900 dark:text-white"><span>📞</span> +998 (90) 000-00-00</p>
+            <p class="flex items-center gap-2 text-slate-900 dark:text-white"><span>📩</span> info@sahna-media.uz</p>
+            <p class="flex items-center gap-2 text-slate-900 dark:text-white"><span>📍</span> Samarqand shahri, O'zbekiston</p>
+          </div>
+        </div>
+
       </div>
-      <p>© 2026 SAHNA Ecosystem. Barcha huquqlar himoyalangan.</p>
+
+      <div class="pt-8 border-t border-brand-borderLight dark:border-brand-borderDark flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500">
+        <p>© 2026 SAHNA Media Ecosystem. Barcha huquqlar himoyalangan.</p>
+        <p class="text-[11px]">Dizayn va Texnologik Baza — SAHNA Hub</p>
+      </div>
     </div>
   </footer>
 
@@ -523,8 +611,13 @@
 
       <div class="space-y-4">
         <div>
+          <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Mijoz Ismi va Telefon Raqami</label>
+          <input type="text" id="clientContact" placeholder="Masalan: Sardor (+998 90 123 45 67)" class="w-full bg-slate-100 dark:bg-brand-cardDark text-slate-900 dark:text-white font-semibold text-sm rounded-2xl px-4 py-3 border border-brand-borderLight dark:border-brand-borderDark focus:outline-none focus:border-brand-gold" />
+        </div>
+
+        <div>
           <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">To'y Sanasi</label>
-          <input type="date" value="2026-09-20" class="w-full bg-slate-100 dark:bg-brand-cardDark text-slate-900 dark:text-white font-semibold text-sm rounded-2xl px-4 py-3 border border-brand-borderLight dark:border-brand-borderDark focus:outline-none focus:border-brand-gold" />
+          <input type="date" value="2026-09-20" class="w-full bg-slate-100 dark:bg-brand-cardDark text-slate-900 dark:text-white font-semibold text-sm rounded-2xl px-4 py-3 border border-brand-borderLight dark:border-brand-borderDark focus:outline-none focus:border-brand-gold cursor-pointer" />
         </div>
 
         <div>
@@ -547,7 +640,7 @@
             <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Zaklad Depoziti (30%)</span>
             <span id="depositPrice" class="text-xl font-black text-brand-gold">2 250 000 UZS</span>
           </div>
-          <button onclick="alert('To\'lov tizimiga yo\'naltirilmoqda...'); closeBookingModal();" class="gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-sm px-6 py-3 rounded-2xl transition shadow-lg">
+          <button onclick="submitBooking()" class="gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-sm px-6 py-3 rounded-2xl transition shadow-lg hover:scale-105 transform">
             Kafolatli To'lash
           </button>
         </div>
@@ -556,9 +649,45 @@
     </div>
   </div>
 
-  <!-- ================= JAVASCRIPT ================= -->
+  <!-- ================= PRODUCT ORDER MODAL ================= -->
+  <div id="productModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-brand-surfaceDark w-full max-w-md rounded-3xl border border-brand-borderLight dark:border-brand-borderDark p-6 sm:p-8 shadow-2xl space-y-5">
+      
+      <div class="flex justify-between items-start pb-4 border-b border-brand-borderLight dark:border-brand-borderDark">
+        <div>
+          <h3 class="text-lg font-bold font-serif text-slate-900 dark:text-white">Mahsulot Buyurtmasi</h3>
+          <p id="modalProductName" class="text-xs text-brand-gold font-semibold mt-0.5">Katta Devoriy Vitrina Portret</p>
+        </div>
+        <button onclick="closeProductModal()" class="text-slate-400 hover:text-white text-2xl leading-none">✕</button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Yetkazib Berish Manzili (Viloyat va shahar)</label>
+          <input type="text" id="shippingAddress" placeholder="Masalan: Samarqand shahar, Registon ko'chasi" class="w-full bg-slate-100 dark:bg-brand-cardDark text-slate-900 dark:text-white font-semibold text-sm rounded-2xl px-4 py-3 border border-brand-borderLight dark:border-brand-borderDark focus:outline-none focus:border-brand-gold" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Telefon Raqamingiz</label>
+          <input type="tel" id="shippingPhone" placeholder="+998 (90) 123-45-67" class="w-full bg-slate-100 dark:bg-brand-cardDark text-slate-900 dark:text-white font-semibold text-sm rounded-2xl px-4 py-3 border border-brand-borderLight dark:border-brand-borderDark focus:outline-none focus:border-brand-gold" />
+        </div>
+
+        <div class="p-3.5 bg-slate-100 dark:bg-brand-cardDark rounded-2xl flex justify-between items-center">
+          <span class="text-xs text-slate-500 font-bold uppercase">To'lov Summasi:</span>
+          <span id="productModalPrice" class="text-base font-black text-brand-gold">350 000 UZS</span>
+        </div>
+
+        <button onclick="submitProductOrder()" class="w-full gold-gradient-bg hover:opacity-90 text-brand-dark font-bold text-sm py-3.5 rounded-2xl shadow-lg transition hover:scale-[1.02] transform">
+          Buyurtmani Tasdiqlash
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    // Theme Mode Toggle Logic
+    // 1. Theme Toggle
     const themeToggleBtn = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
     const html = document.documentElement;
@@ -580,19 +709,37 @@
       themeIcon.textContent = '🌙';
     }
 
-    // Mobile Menu Toggle
+    // 2. Mobile Menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     mobileMenuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Smeta Calculator Logic
+    // 3. Viloyatlar bo'yicha Jonli Filtr
+    function filterVideographers() {
+      const selectedCity = document.getElementById('heroCity').value;
+      const selectedCityText = document.getElementById('heroCity').options[document.getElementById('heroCity').selectedIndex].text;
+      document.getElementById('activeFilterBadge').textContent = selectedCityText.replace('📍 ', '');
+
+      const cards = document.querySelectorAll('.studio-card');
+      cards.forEach(card => {
+        const regions = card.getAttribute('data-region') || '';
+        if (selectedCity === 'all' || regions.includes(selectedCity) || regions.includes('all')) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('videographers').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 4. Smeta Kalkulyatori
     function calculateTotal() {
       const guests = parseInt(document.getElementById('guestRange').value);
       document.getElementById('guestCountLabel').textContent = guests + " kishi";
 
-      // 1 kishi uchun o'rtacha restoran xarajati 180,000 UZS
       let total = guests * 180000;
       if (document.getElementById('calcVideo').checked) total += 6000000;
       if (document.getElementById('calcAlbum').checked) total += 1200000;
@@ -602,9 +749,16 @@
       document.getElementById('totalCost').textContent = total.toLocaleString('uz-UZ') + " UZS";
     }
 
-    // Modal Booking Logic
+    function downloadSmetaSummary() {
+      const guests = document.getElementById('guestRange').value;
+      const total = document.getElementById('totalCost').textContent;
+      alert(`📋 SAHNA To'y Smetasi:\n\n• Mehmonlar soni: ${guests} kishi\n• Jami hisoblangan byudjet: ${total}\n\nSmeta tafsilotlari menejerga yuborildi!`);
+    }
+
+    // 5. Booking Modal
     function openBookingModal(studioName, price) {
       document.getElementById('modalStudioName').textContent = studioName;
+      updateDepositPrice();
       const modal = document.getElementById('bookingModal');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
@@ -622,13 +776,49 @@
       document.getElementById('depositPrice').textContent = deposit.toLocaleString('uz-UZ') + " UZS";
     }
 
-    // Voting Logic
+    function submitBooking() {
+      const contact = document.getElementById('clientContact').value;
+      if (!contact) {
+        alert("Iltimos, ismingiz va telefon raqamingizni kiriting!");
+        return;
+      }
+      alert("✅ Rahmat! Sizning zaklad broningiz qabul qilindi. Tez orada SAHNA administratori siz bilan bog'lanadi.");
+      closeBookingModal();
+    }
+
+    // 6. Product Order Modal
+    function openProductModal(name, price) {
+      document.getElementById('modalProductName').textContent = name;
+      document.getElementById('productModalPrice').textContent = price;
+      const modal = document.getElementById('productModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProductModal() {
+      const modal = document.getElementById('productModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function submitProductOrder() {
+      const address = document.getElementById('shippingAddress').value;
+      const phone = document.getElementById('shippingPhone').value;
+      if (!address || !phone) {
+        alert("Iltimos, manzil va telefon raqamingizni to'liq kiriting!");
+        return;
+      }
+      alert("📦 Buyurtmangiz qabul qilindi! Yetkazib berish xizmati tez orada siz bilan bog'lanadi.");
+      closeProductModal();
+    }
+
+    // 7. Hafta To'yi Ovoz Berish
     let v1 = 1240, v2 = 980;
     let hasVoted = false;
 
     function castVote(pair) {
       if (hasVoted) {
-        alert("Siz allaqachon ovoz bergansiz!");
+        alert("Siz haftaning to'yiga allaqachon ovoz bergansiz!");
         return;
       }
       if (pair === 1) {
@@ -639,7 +829,7 @@
         document.getElementById('vote2').textContent = v2.toLocaleString('uz-UZ') + " Ovoz";
       }
       hasVoted = true;
-      alert("Rahmat! Sizning ovozingiz muvaffaqiyatli qabul qilindi.");
+      alert("❤️ Rahmat! Sizning ovozingiz muvaffaqiyatli qabul qilindi.");
     }
   </script>
 </body>
