@@ -1,0 +1,48 @@
+/* SAHNA — Maxsus Stillar */
+:root {
+  --brand-gold: #C6A15B;
+  --brand-gold-hover: #DFBD78;
+  color-scheme: dark;
+}
+
+html:not(.dark) {
+  color-scheme: light;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #DFBD78 0%, #C6A15B 50%, #9E7730 100%);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #DFBD78 0%, #C6A15B 50%, #B38838 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-panel {
+  background: rgba(18, 21, 28, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+html:not(.dark) .glass-panel {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.card-zoom-img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .card-zoom-img {
+  transform: scale(1.05);
+}
+
+select option {
+  background-color: #12151C !important;
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) select option {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+}
